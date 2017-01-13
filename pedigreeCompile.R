@@ -21,9 +21,18 @@ compilePedigree <-function(pedData)
   
   pedigree <- lapply(uniqueID, function(y){
     
-      subset <- unique(unique(pedData[which(pedData[,"ID"] == y || pedData[,"FamilyID"] == y),])) #isolate subset of file entries sharing same ID
+      subset <- unique(pedData[which(pedData[,"ID"] == y),]) #isolate subset of file entries sharing same ID
+      famSubset <- unique(pedData[which(pedData[,"FamilyID"] == y),]) #isolate family members
       
       famID <- unique(subset[,"FamilyID"])
+      
+      
+      if(famID == "")
+      {
+        
+      }
+      
+      
       paternalID <- unique(subset[,"paternalID"])
       maternalID <- unique(subset[,"maternalID"])
       sexID <- unique(subset[,"sexID"])
