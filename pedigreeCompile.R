@@ -13,45 +13,34 @@
 
 compilePedigree <-function(pedData)
 {
-  conflictList <- data.frame()
-  
+
   print("Compile Pedigree Start")
   
   uniqueID <- unique(pedData[,"ID"])  #isolated only unique ID values
   
-  pedigree <- lapply(uniqueID, function(y){
+  
+  pedigree <-lapply(uniqueID, function(y){
     
       subset <- unique(pedData[which(pedData[,"ID"] == y),]) #isolate subset of file entries sharing same ID
-      famSubset <- unique(pedData[which(pedData[,"FamilyID"] == y),]) #isolate family members
+      famSubset <- unique(pedData[which(pedData[,"familyID"] == y),]) #isolate family members
       
-      famID <- unique(subset[,"FamilyID"])
+      paternalID <- famSubset[which(famSubset[,"familyStatus"]=="Father"),"ID"]
+      maternalID <- famSubset[which(famSubset[,"familyStatus"]=="Mother"),"ID"]
       
-      
-      if(famID == "")
-      {
-        
-      }
-      
-      
-      paternalID <- unique(subset[,"paternalID"])
-      maternalID <- unique(subset[,"maternalID"])
-      sexID <- unique(subset[,"sexID"])
+      sexID <- unique(subset[,"genderID"])
       affectionID <- unique(subset[,"affectionID"])
-      
-      if(nrow(famID) > 1)
-      {
-        #Conflicting Family IDs
-        
-      }
-      
-      paternalID <- unique(subset)
-      
+
+      entry <- c(y,affectionID)
       
       return(entry)
     
-    
   })
   
-  
+ 
   return(pedigree)
 }
+
+test <- read.csv("test.csv")
+pruned <- test[,c(4,5,6,7,10)]
+colnames(pruned) <- c("ID","familyID","familyStatus","genderID","affectionID")
+pedigree <- compilePedigree(pruned)
