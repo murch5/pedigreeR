@@ -35,7 +35,7 @@ compilePedigree <-function(pedData)
       
       if(length(subset[,"familyID"])>1)
       {
-        print("Error: Multiple Family ID Detected for" + uniqueID[i])
+        print(paste("Error: Multiple Family ID Detected for",uniqueID[i]))
       }
       
       famID <- subset[,"familyID"] #initially set famID to index ID *** MAY BE OVERWRITTEN LATER
@@ -61,6 +61,7 @@ compilePedigree <-function(pedData)
 }
 
 test <- read.csv("test.csv")
+test <- test[,-1]
 pruned <- test[,c(3,4,5,6,9)]
 colnames(pruned) <- c("ID","familyID","familyStatus","genderID","affectionID")
 pedigree <- compilePedigree(pruned)
