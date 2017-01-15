@@ -16,5 +16,32 @@
 classifyPedigree <- function(pedigree)
 {
   
+  familyID <- sort(unique(pedigree[,"famID"])) #determined unique famIDs in pedigree - order ascending
+  familyID <- familyID[-1] #removed zero - will be handled separately as singletons
+  
+  familyData <- data.frame(famID=numeric(),type = factor(),numMembers=numeric())
+  
+  for(i in length(familyID))
+  {
+    
+    famID <- familyID[i]
+    
+    subset <- pedigree[which(pedigree[,"famID"]==famID),]
+    
+    numMembers <- length(subset)
+    
+    if(subset[which(subset[,""]),])
+    
+    entry <- c(famID,type,numMembers)
+  
+  }
+  
+  
+  print(familyID)
+  
+  colnames(familyData) <- c("famID","type","numMembers")
+  return(familyData)
   
 }
+
+classifyPedigree(pedigree)
