@@ -46,7 +46,7 @@ compilePedigree <- function(pedData)
     famID <-
       subset[, "familyID"] #initially set famID to index ID *** MAY BE OVERWRITTEN LATER
     if (length(famID) == 0 || is.na(famID)) {
-      famID = 0
+      famID = ID
     }
     
     paternalID <-
