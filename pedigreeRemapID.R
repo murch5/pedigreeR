@@ -8,7 +8,7 @@
 #
 #arguments:
 #   oldID - ID number to be remapped
-#   map - data.frame containing two columns matching old and new IDs
+#   map - data.frame containing two columns matching old and new IDs (1=old,2=new)
 #
 #returns:
 #
@@ -16,6 +16,5 @@
 
 remapID <- function(oldID,map)
 {
-  
-  
+  return (map[which(map[,1]==oldID),2])
 }
