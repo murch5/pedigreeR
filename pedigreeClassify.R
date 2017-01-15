@@ -25,36 +25,33 @@ classifyPedigree <- function(ped)
 
     famID <- familyID[i]
     
-    
     subset <- pedigree[which(pedigree[,"famID"]==famID),]
     
     numMembers <- nrow(subset)
     
     type <- character(0)
-    
     typeID <- numeric(0)
     
-    
-    if(subset[which(subset[,"ID"]==famID),"paternalID"]!=0)
+    #If statement to determine family structure type
+    if (subset[which(subset[, "ID"] == famID), "paternalID"] != 0)
     {
-      
-      if(subset[which(subset[,"ID"]==famID),"maternalID"]!=0)
+      if (subset[which(subset[, "ID"] == famID), "maternalID"] != 0)
       {
         type = "Trio"
         typeID = 1
-      }else
+      } else
       {
         type = "Fonly"
         typeID = 2
       }
       
-    }else
+    } else
     {
-      if(subset[which(subset[,"ID"]==famID),"maternalID"]!=0)
+      if (subset[which(subset[, "ID"] == famID), "maternalID"] != 0)
       {
         type = "MOnly"
         typeID = 3
-      }else
+      } else
       {
         type = "Singleton"
         typeID =  4
