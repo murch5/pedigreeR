@@ -4,3 +4,6 @@
 *.Ruserdata
 *.csv
 text.csv
+*_Local.R
+*.zip
+*.txt
