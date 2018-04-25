@@ -14,7 +14,7 @@
 
 compilePedigree <- function(pedData)
 {
-  print("Compile Pedigree Start")
+  
   
   uniqueID <-
     unique(pedData[, "ID"])  #isolated only unique ID values
@@ -83,10 +83,4 @@ compilePedigree <- function(pedData)
   return(pedigree)
 }
 
-test <- read.csv("test.csv")
-test <- test[, -1]
-pruned <- test[, c(3, 4, 5, 6, 9)]
-colnames(pruned) <-
-  c("ID", "familyID", "familyStatus", "genderID", "affectionID")
-pedigree <- compilePedigree(pruned)
 
